@@ -1,0 +1,138 @@
+.container {
+    text-align: center;
+}
+
+.img {
+    border-radius: 50px;
+}
+
+.tabla {
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    border-spacing: 0px;
+}
+
+.h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+}
+
+.modalContainer {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalContainer .modalContent {
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid lightgray;
+    width: 60%;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.close {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modalContainer {
+    float: right;
+    text-align: center;
+    font-size: 28px;
+    padding: 0;
+}
+
+.dias {
+    background-color: rgb(161, 161, 161);
+    border: 1px solid black;
+}
+
+.horas {
+    border: 1px solid black;
+}
+
+.button {
+    margin-bottom: 20px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.error {
+    text-align: center;
+    color: red;
+}
+
+.textarea {
+    resize: none;
+    overflow-y: scroll;
+    width: 40%;
+    text-align: center;
+    margin-bottom: 5rem;
+    display: block;
+    top: 5rem;
+    margin: auto;
+}
+
+.opiniones {
+    border: 1px solid black;
+    height: 200px;
+    margin: 5rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    overflow-y: scroll;
+}
+
+.containerOp {
+    border-bottom: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.divOp {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.userOp {
+    font-size: 25px;
+}
+
+.tituloOp {
+    font-size: 20px;
+}
+
+.opinionOp {
+    font-size: 15px;
+    color: #333;
+}

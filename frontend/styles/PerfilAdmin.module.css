@@ -1,0 +1,13 @@
+.user{
+    display: flex;
+}
+
+.imgUser{
+    float: left;
+    margin-right: 10px;
+}
+
+.datosUser{
+    align-self: center;
+    font-size: 17px;
+}

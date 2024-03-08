@@ -1,0 +1,41 @@
+.container {
+    color: white;
+    background-color: black;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: row;
+    padding: 20px;
+}
+
+.div {
+    width: 25%;
+    height: auto; 
+    padding: 0 15px; 
+    background-color: black;
+    margin-bottom: 5px; 
+}
+
+.img, .p {
+    display: block; 
+    margin: 0px auto; 
+}
+
+.UNTAP:hover {
+    cursor: pointer;
+}
+
+.link {
+    display: block;
+}
+
+.h1 {
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 880px) {
+    .div {
+        width: 100%;
+    }
+}
