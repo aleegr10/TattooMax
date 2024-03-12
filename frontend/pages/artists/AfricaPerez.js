@@ -7,7 +7,6 @@ export default function AfricaPerez() {
     return(
         <div>
             <div>
-                <Login/>
                 <Nav/>
             </div>
             <div>

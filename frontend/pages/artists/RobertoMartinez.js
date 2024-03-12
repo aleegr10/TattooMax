@@ -8,7 +8,6 @@ export default function RobertoMartinez() {
         <div>
             <div>
             <div>
-                <Login/>
                 <Nav/>
             </div>
             <div>

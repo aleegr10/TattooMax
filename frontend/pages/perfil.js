@@ -5,6 +5,7 @@ import Nav from '../components/nav';
 import Footer from '../components/footer';
 import EditaDatos from '../components/editaDatos';
 import EditaPass from '../components/editaPass';
+import Image from 'next/image';
 import style from '../styles/Perfil.module.css';
 
 export default function Perfil() {
@@ -13,26 +14,31 @@ export default function Perfil() {
   const [user, setUser] = useState([]);
   const [citas, setCitas] = useState([]);
   const [opiniones, setOpiniones] = useState([]);
-  const [artists, setArtists] = useState([]);
+  // const [artists, setArtists] = useState([]);
   const [isEditaDatosOpen, setIsEditaDatosOpen] = useState(false);
   const [isEditaPassOpen, setIsEditaPassOpen] = useState(false);
 
   useEffect(() => {
+    recibeId();
+    fetchCitas();
+    fetchOpiniones();
+    // fetchArtists();
+    
     const userRole = localStorage.getItem('userRole');
     if (userRole === 'user') {
       setIsUser(true);
     } else {
       router.push('/pagError');
     }
-    recibeId();
   }, []);
+
+  useEffect(()=>{
+  }, [])
 
   const recibeId = () => {
     const userId = sessionStorage.getItem('token');
     fetchUser(userId);
-    fetchCitas(userId);
-    fetchOpiniones(userId);
-    fetchArtists();
+    
   };
 
   const fetchUser = async (userId) => {
@@ -41,26 +47,41 @@ export default function Perfil() {
     setUser(data.find((usuario) => usuario._id === userId));
   };
 
-  const fetchCitas = async (userId) => {
-    const response = await fetch(`http://localhost:5000/citas`);
-    const data = await response.json();
-    const userCitas = data.filter((cita) => cita.user === user.username);
-    setCitas(userCitas);
+  const fetchCitas = async () => {
+    try {
+      const userId = sessionStorage.getItem('token');
+      const userResponse = await fetch(`http://localhost:5000/users`);
+      const userData = await userResponse.json();
+      const user = userData.find(usuario => usuario._id === userId);
+      const response = await fetch(`http://localhost:5000/citas`);
+      const data = await response.json();
+      const userCitas = data.filter((cita) => cita.user === user.username);
+      setCitas(userCitas);
+    } catch (error) {
+      console.error("Error fetching opiniones:", error);
+    }
   };
 
-  const fetchOpiniones = async (userId) => {
-    const response = await fetch(`http://localhost:5000/opiniones`);
-    const data = await response.json();
-    const userOpiniones = data.filter((opinion) => opinion.user === user.username);
-    console.log(opiniones)
-    setOpiniones(userOpiniones);
+  const fetchOpiniones = async () => {
+    try {
+      const userId = sessionStorage.getItem('token');
+      const userResponse = await fetch(`http://localhost:5000/users`);
+      const userData = await userResponse.json();
+      const user = userData.find(usuario => usuario._id === userId);
+      const opinionesResponse = await fetch(`http://localhost:5000/opiniones`);
+      const opinionesData = await opinionesResponse.json();
+      const filteredOpiniones = opinionesData.filter(opinion => opinion.user === user.username);
+      setOpiniones(filteredOpiniones);
+    } catch (error) {
+      console.error("Error fetching opiniones:", error);
+    }
   };
 
-  const fetchArtists = async () => {
-    const response = await fetch(`http://localhost:5000/artists`);
-    const data = await response.json();
-    setArtists(data);
-  };
+  // const fetchArtists = async () => {
+  //   const response = await fetch(`http://localhost:5000/artists`);
+  //   const data = await response.json();
+  //   setArtists(data);
+  // };
 
   const openEditaDatos = () => {
     setIsEditaDatosOpen(true);
@@ -82,21 +103,6 @@ export default function Perfil() {
     return <div style={{ textAlign: 'center' }}>Cargando...</div>;
   }
 
-  let size = 0;
-  let opinionHtml = `<div>`;
-  for (const op in opiniones) {
-    opinionHtml += `<div class=${style.containerOp}>
-                      <div id="artist" class=${style.divOp}><Image class=${style.imgArtistOp} src=${opiniones[op].imgArtist} width="30px"/><b class=${style.ArtistOp}/>${opiniones[op].artist}</b></div>
-                      <div id="titulo"class=${style.divOp}><p class=${style.tituloOp}><b>${opiniones[op].titulo}</b></p></div>
-                      <div id="opinion"class=${style.divOp}><p class=${style.opinionOp}>${opiniones[op].opinion}</p></div>
-                    </div>`;
-    size++;
-  }
-  if (size === 0) {
-    opinionHtml += `<h3>El usuario no ha hecho ninguna opinión</h3>`;
-  }
-  opinionHtml += `</div>`;
-
   return (
     <div>
       <div>
@@ -105,7 +111,7 @@ export default function Perfil() {
       <div className={style.datosUser}>
         <div className={style.user}>
           <div className={style.img}>
-            <img src={user.imagen} width="150px" />
+            <img src={user.imagen} alt='userImage' width="150px" />
           </div>
           <div className={style.datos}>
             <p>User: <b>{user.username}</b></p>
@@ -114,8 +120,11 @@ export default function Perfil() {
           </div>
         </div>
         <div>
-          <Popup trigger={<button className={style.popupButton} onClick={openEditaDatos}>Editar información</button>} modal>{isEditaDatosOpen && <EditaDatos user={user} onClose={closeEditaDatos} />}</Popup>
-          <Popup trigger={<button className={style.popupButton} onClick={openEditaPass}>Editar contraseña</button>} modal>{isEditaPassOpen && <EditaPass user={user} onClose={closeEditaPass} />}</Popup>
+          <button className={style.openModal} onClick={openEditaDatos}>Editar información</button>
+          <button className={style.openModal} onClick={openEditaPass}>Editar contraseña</button>
+
+          {isEditaDatosOpen && <EditaDatos user={user} onClose={closeEditaDatos} />}
+          {isEditaPassOpen && <EditaPass user={user} onClose={closeEditaPass} />}
 
           
           
@@ -124,7 +133,40 @@ export default function Perfil() {
       <div className={style.containerOp}>
         <h2>Opiniones realizadas a nuestros artistas</h2>
         <div className={style.opiniones}>
-          {opiniones.map(opinion => {console.log(opinion)})}
+          {opiniones.length === 0 ? (
+            <h3>No has realizado ninguna opinión a nuestros artistas</h3>
+          ) : (
+            opiniones.map((opinion, index) => (
+              <div key={index} className={style.opinion}>
+                <div className={style.divOp}>
+                  <img className={style.imgArtistOp} src={opinion.imgArtist} width="30px" />
+                  <b className={style.ArtistOp}>{opinion.artist}</b>
+                </div>
+                <div className={style.divOp}><b className={style.TituloOp}>{opinion.titulo}</b></div>
+                <div className={style.divOp}><b className={style.opinionOp}>{opinion.opinion}</b></div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+      <div className={style.containerCitas}>
+        <h2>Citas</h2>
+        <div className={style.citas}>
+          {citas.length === 0 ? (
+            <div>
+              <h3>Aún no tienes ninguna cita con nosotros</h3>
+              <p>Si quieres concretar una cita, rellena el formulario <a href='/local' style={{color: 'blue'}}>aquí</a> y nos pondremos en contacto contigo</p>
+            </div>
+            
+          ) : (
+            citas.map((cita, index) => (
+              <div key={index} className={style.cita}>
+                <div className={style.divCita}><b className={style.ArtistCita}>{cita.artist}</b></div>
+                <div className={style.divCita}><b className={style.horarioCita}>{cita.cita}</b></div>
+                <div className={style.divCita}><b className={style.descCita}>{cita.descripcion}</b></div>
+              </div>
+            ))
+          )}
         </div>
       </div>
       <div>

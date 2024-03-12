@@ -8,7 +8,6 @@ export default function LuciaRomero() {
         <div>
             <div>
             <div>
-                <Login/>
                 <Nav/>
             </div>
             <div>

@@ -116,16 +116,16 @@ const EditaDatos = ({user, onClose }) => {
         <span className={style.close} onClick={onClose}><b>x</b></span>
         <div>
           <span id='actError'></span>
-          <h1>DATOS PERSONALES</h1>
-          <span id="userError"></span>
-          <p>Usuario: <input id="user" value={username} onChange={handleInputChange} required/></p>
-          <span id="nameError"></span>
-          <p>Nombre: <input id="name" value={fullname} onChange={handleInputChange} required/></p>
-          <span id="emailError"></span>
-          <p>Email: <input id="email" value={email} onChange={handleInputChange} required/></p>
-          <p>Teléfono: <input id="tel" value={telefono} onChange={handleInputChange}/></p>
-          <button onClick={submit}>Aceptar</button>
-          <button onClick={onClose}>Cancelar</button>
+          <h1 className={style.header}>DATOS PERSONALES</h1>
+          <span id="userError"></span><br/>
+          <input id="user" value={username} onChange={handleInputChange} placeholder="Usuario" required/><br/>
+          <span id="nameError"></span><br/>
+          <input id="name" value={fullname} onChange={handleInputChange} placeholder="Nombre" required/><br/>
+          <span id="emailError"></span><br/>
+          <input type="email" id="email" value={email} onChange={handleInputChange} placeholder="Email" required/><br/><br/>
+          <input type="number" id="tel" value={telefono} onChange={handleInputChange} placeholder="Teléfono"/>
+          <button className={style.button} onClick={submit}>Aceptar</button>
+          <button className={style.button} onClick={onClose}>Cancelar</button>
         </div>
       </div>
       <div id="modalEditaDatosOk" className={style.modalContainerEdita}>

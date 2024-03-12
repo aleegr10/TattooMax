@@ -117,15 +117,15 @@ const EditaPass = ({ user, onClose }) => {
                 <div>
                     <span id='actError'></span>
                     <h1>CAMBIAR CONTRASEÑA</h1>
-                    <span id="pass1Error"></span>
-                    <p>Contraseña actual: <input id="pass1" type="password" onChange={handleInputChange} /></p>
-                    <span id="pass2Error"></span>
-                    <p>Nueva contraseña: <input id="pass2" type="password" onChange={handleInputChange} /></p>
-                    <span id="pass3Error"></span>
-                    <p>Repite la nueva contraseña: <input id="pass3" type="password" onChange={handleInputChange} /></p>
+                    <span id="pass1Error"></span><br/>
+                    <input id="pass1" type="password" onChange={handleInputChange} placeholder="Contraseña actual" required/><br/>
+                    <span id="pass2Error"></span><br/>
+                    <input id="pass2" type="password" onChange={handleInputChange} placeholder="Nueva contraseña" required/><br/>
+                    <span id="pass3Error"></span><br/>
+                    <input id="pass3" type="password" onChange={handleInputChange} placeholder="Rpite la nueva contraseña" required/><br/>
                     <span id="newError"></span><br />
-                    <button onClick={submit}>Aceptar</button>
-                    <button onClick={onClose}>Cancelar</button>
+                    <button className={style.button} onClick={submit}>Aceptar</button>
+                    <button className={style.button} onClick={onClose}>Cancelar</button>
                 </div>
             </div>
             <div id="modalEditaPassOk" className={style.modalContainerEdita}>

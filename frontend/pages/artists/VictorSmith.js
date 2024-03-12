@@ -8,7 +8,6 @@ export default function VictorSmith() {
         <div>
             <div>
             <div>
-                <Login/>
                 <Nav/>
             </div>
             <div>

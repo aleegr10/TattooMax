@@ -241,10 +241,8 @@ const Login = () => {
                                         <div className={style.header}> INICIAR SESIÓN </div>
                                         <div className={style.content}>
                                             <span id="iniSesionError"></span>
-                                            <label className={style.input}>Usuario:</label>
-                                            <input type="text" id="userInicio" className={style.input} /><br />
-                                            <label className={style.input}>Contraseña:</label>
-                                            <input type="password" id="passInicio" className={style.input} /><br />
+                                            <input type="text" id="userInicio" className={style.input} placeholder="Usuario"/><br />
+                                            <input type="password" id="passInicio" className={style.input} placeholder="Contraseña"/><br />
                                             <button type="button" className={style.button} onClick={iniciarSesion}>Iniciar sesión</button>
                                             <button className={style.cambiaForm} onClick={changeReg}><b>{isRegistred ? "Registrarse" : "Iniciar sesión"}</b></button>
                                         </div>

@@ -1,41 +1,30 @@
 .container {
-    color: white;
-    background-color: black;
-    text-align: center;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: row;
+    flex-direction: row;
+    background-color: black;
+    color: white;
     padding: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .div {
-    width: 25%;
-    height: auto; 
-    padding: 0 15px; 
-    background-color: black;
-    margin-bottom: 5px; 
-}
-
-.img, .p {
-    display: block; 
-    margin: 0px auto; 
-}
-
-.UNTAP:hover {
-    cursor: pointer;
-}
-
-.link {
-    display: block;
+    flex-basis: 25%;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .h1 {
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
-@media screen and (max-width: 880px) {
+.p {
+    margin: 5px 0;
+}
+
+@media (max-width: 768px) {
     .div {
-        width: 100%;
+        flex-basis: 100%;
     }
 }

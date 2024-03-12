@@ -7,7 +7,6 @@ export default function CesarLopez() {
     return(
         <div>
             <div>
-                <Login/>
                 <Nav/>
             </div>
             <div>

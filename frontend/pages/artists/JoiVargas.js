@@ -8,7 +8,6 @@ export default function JoiVargas() {
         <div>
             <div>
             <div>
-                <Login/>
                 <Nav/>
             </div>
                 <Artista name={"Joi Vargas"} id={"628293006896306a2c1728fd"}/>
