@@ -91,6 +91,17 @@
     border-radius: 10px;
 }
 
+.button{
+    width: 70%;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
 @media screen and (max-width: 880px) {
     .containerMapa,
     .containerAddConsulta {

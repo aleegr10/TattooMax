@@ -11,9 +11,29 @@ const Artista = ({ name }) => {
     const [userLog, setUserLog] = useState(null);
     const [isComOpen, setIsComOpen] = useState(false);
 
+    useEffect(() => {
+        recibeUserLog();
+        fetchArtist();
+        fetchHorario();
+        fetchOpiniones();
+    }, []);
+
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
-    const openCom = () => setIsComOpen(true);
+    const openCom = () => {
+        recibeUserLog()
+        if (userLog !== undefined) {
+            setIsComOpen(true);
+        } else {
+            var modal = document.getElementById("myModal");
+                modal.style.display = "block";
+                setTimeout(() => {
+                    var modal = document.getElementById("myModal");
+                    modal.style.display = "none";
+                }, 2000);
+        }
+    }
+    
     const closeCom = () => setIsComOpen(false);
 
     const fetchHorario = async () => {
@@ -42,30 +62,10 @@ const Artista = ({ name }) => {
         setUserLog(data.find(user => user._id === userId));
     };
 
-    useEffect(() => {
-        recibeUserLog();
-        fetchArtist();
-        fetchHorario();
-        fetchOpiniones();
-    }, []);
-
-    const compruebaIsLog = () => {
-        if (userLog === null) {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "block";
-            setTimeout(() => {
-                var modal = document.getElementById("myModal");
-                modal.style.display = "none";
-            }, 2000);
-        } else {
-            openCom();
-        }
-    };
-
     return (
         <div className={style.container}>
             <div>
-                <img alt={artista.name} src={artista.imagen} className={style.img} width="100px" height="100px" />
+                <img src={artista.imagen} alt='artistImage' className={style.img} width="100px"/>
                 <h1>{artista.name}</h1>
                 <p>Edad: {artista.edad}</p>
                 <p>Email: {artista.email}</p>
@@ -94,19 +94,30 @@ const Artista = ({ name }) => {
             </div>
 
             <div className={style.container}>
-                <h2 className={style.h2}>Opiniones</h2>
-                <div className={style.opiniones}>
-                    {opiniones.map(opinion => (
-                        <div key={opinion.id} className={style.containerOp}>
-                            <div id="user" className={style.divOp}><img alt='imgUser' src={opinion.imgUser} className={style.imgUserOp} width="30px" height="30px" /><b className={style.userOp}>{opinion.user}</b></div>
-                            <div id="titulo" className={style.divOp}><p className={style.tituloOp}><b>{opinion.titulo}</b></p></div>
-                            <div id="opinion" className={style.divOp}><p className={style.opinionOp}>{opinion.opinion}</p></div>
+                <div className={style.containerOp}>
+                    <h2>Opiniones</h2>
+                    <div className={style.opiniones}>
+                    {opiniones.length === 0 ? (
+                        <div>
+                        <h3>No se ha realizado ninguna opinión a este artistas</h3>
                         </div>
-                    ))}
+                    ) : (
+                        opiniones.map((opinion, index) => (
+                        <div key={index} className={style.opinion}>
+                            <div className={style.divOp}>
+                                <img className={style.imgUserOp} src={opinion.imgUser} width="30px" />
+                                <b className={style.UserOp}>{opinion.user}</b>
+                            </div>
+                            <div className={style.divOp}><b className={style.TituloOp}>{opinion.titulo}</b></div>
+                            <div className={style.divOp}><b className={style.opinionOp}>{opinion.opinion}</b></div>
+                        </div>
+                        ))
+                    )}
+                    </div>
                 </div>
 
                 <div>
-                    <button onClick={compruebaIsLog} className={style.button}>Escribir un comentario</button>
+                    <button onClick={openCom} className={style.button}>Escribir un comentario</button>
                     {isComOpen && <AddCom user={userLog} artist={artista} onClose={closeCom} />}
                     <div id="myModal" className={style.modalContainer}>
                         <div id="modalContent" className={style.modalContent}>

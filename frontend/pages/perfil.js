@@ -134,7 +134,10 @@ export default function Perfil() {
         <h2>Opiniones realizadas a nuestros artistas</h2>
         <div className={style.opiniones}>
           {opiniones.length === 0 ? (
-            <h3>No has realizado ninguna opinión a nuestros artistas</h3>
+            <div>
+              <h3>No has realizado ninguna opinión a nuestros artistas</h3>
+              <p>Si quieres añadir una opinión, elige un artista <a href='/artists' style={{color: 'blue'}}>aquí</a> y nos pondremos en contacto contigo</p>
+            </div>
           ) : (
             opiniones.map((opinion, index) => (
               <div key={index} className={style.opinion}>
@@ -149,6 +152,10 @@ export default function Perfil() {
           )}
         </div>
       </div>
+
+      <br/><br/>
+
+
       <div className={style.containerCitas}>
         <h2>Citas</h2>
         <div className={style.citas}>

@@ -1,5 +1,5 @@
 import style from "../styles/Perfil.module.css"
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const EditaDatos = ({user, onClose }) => {
   const [username, setUsername] = useState(user.username);
@@ -129,10 +129,10 @@ const EditaDatos = ({user, onClose }) => {
         </div>
       </div>
       <div id="modalEditaDatosOk" className={style.modalContainerEdita}>
-            <div className={style.modalContentEdita}>
-                <p>SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE</p>
-            </div>
+        <div className={style.modalContentEdita}>
+            <p>SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE</p>
         </div>
+      </div>
     </div>
   )
 }

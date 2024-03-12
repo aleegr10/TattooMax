@@ -1,9 +1,7 @@
-/* Estilos generales */
 .h1 {
     text-align: center;
 }
 
-/* Estilos de los contenedores */
 .container {
     background-color: black;
     width: 85%;
@@ -21,7 +19,6 @@
     float: right;
 }
 
-/* Estilos de las imágenes */
 .img {
     height: 100px;
     width: 100px;
@@ -29,14 +26,12 @@
     border-radius: 50px;
 }
 
-/* Estilos de los elementos dentro del contenedor */
 .edad,
 .email,
 .descripcion {
     color: black;
 }
 
-/* Estilos al pasar el cursor sobre el contenedor */
 .container:hover .edad,
 .container:hover .email,
 .container:hover .descripcion {
@@ -44,7 +39,8 @@
     color: white;
 }
 
-/* Estilos de los elementos en bloque */
 .block {
     display: inline-block;
 }
+
+

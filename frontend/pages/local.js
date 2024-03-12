@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import Nav from '../components/nav';
 import Footer from '../components/footer';
 import HorarioLocal from '../components/horarioLocal';
-import Popup from 'reactjs-popup';
 import flecha from '../public/iconos/flecha.png';
 import style from '../styles/Local.module.css';
 
@@ -17,7 +15,7 @@ export default function Local() {
     }, []);
 
     async function recibeUserLog() {
-        userId = localStorage.getItem('token');
+        userId = sessionStorage.getItem('token');
         const data = await fetch('http://localhost:5000/users')
             .then(res => res.json())
             .then(data => setUserLog(data.find(user => user._id === userId)));
@@ -44,19 +42,25 @@ export default function Local() {
         document.getElementById('email').value = '';
         document.getElementById('consulta').value = '';
 
-        var modalCita = document.getElementById('modalCita');
-        modalCita.style.display = 'block';
+        var modalConsulta = document.getElementById('modalConsulta');
+        modalConsulta.style.display = 'block';
 
         setTimeout(function () {
-            modalCita.style.display = 'none';
+            modalConsulta.style.display = 'none';
         }, 2000);
     };
 
     const comprobarLog = () => {
-        setUserLog(localStorage.getItem('token'));
+        setUserLog(sessionStorage.getItem('token'));
+        console.log(userLog)
         if (userLog === undefined) {
             var modal = document.getElementById('myModal');
             modal.style.display = 'block';
+
+            document.getElementById('nombre').value = '';
+            document.getElementById('tel').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('consulta').value = '';
 
             setTimeout(function () {
                 modal.style.display = 'none';
@@ -101,14 +105,14 @@ export default function Local() {
                         <div className={style.addConsulta}>
                             <div> 
                                 <div className={style.form}>
-                                    <label>Nombre y apellidos: *</label>
-                                    <input type="text" id="nombre" name="nombre" className={style.input}/><br/><br/>
-                                    <label>Teléfono</label>
-                                    <input type="tel" id="tel" name="tel" className={style.input}/><br/><br/>
-                                    <label>Email: *</label>
-                                    <input type="email" id="email" name="email" className={style.input}/><br/><br/>
-                                    <label>Consulta</label>
-                                    <textarea id="consulta" name="consulta" rows="3" className={style.textarea}/><br/><br/>
+                                    
+                                    <input type="text" id="nombre" name="nombre" className={style.input} placeholder='Nombre'/><br/><br/>
+                                    
+                                    <input type="number" id="tel" name="tel" className={style.input} placeholder='Teléfono'/><br/><br/>
+                                    
+                                    <input type="email" id="email" name="email" className={style.input} placeholder='Email'/><br/><br/>
+                                    
+                                    <textarea id="consulta" name="consulta" rows="3" className={style.textarea} placeholder='Escribe aquí tu consulta'/><br/><br/>
                                     <button type="button" className={style.button} onClick={comprobarLog}>Enviar</button>
                                 </div>
                             </div>

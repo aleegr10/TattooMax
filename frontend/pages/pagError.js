@@ -1,7 +1,7 @@
 import Nav from "../components/nav";
 import Footer from "../components/footer";
 
-export default function Perfil() {
+export default function PagError() {
   return (
     <div>
       <div>

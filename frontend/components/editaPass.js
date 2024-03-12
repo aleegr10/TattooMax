@@ -116,7 +116,7 @@ const EditaPass = ({ user, onClose }) => {
                 <span className={style.close} onClick={onClose}><b>x</b></span>
                 <div>
                     <span id='actError'></span>
-                    <h1>CAMBIAR CONTRASEÑA</h1>
+                    <h1 className={style.header}>CAMBIAR CONTRASEÑA</h1>
                     <span id="pass1Error"></span><br/>
                     <input id="pass1" type="password" onChange={handleInputChange} placeholder="Contraseña actual" required/><br/>
                     <span id="pass2Error"></span><br/>

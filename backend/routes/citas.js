@@ -13,10 +13,9 @@ router.get('/', function(req, res, next) {
 
 router.post('/add', function (req, res, next) {
     if (req.body.lengtg == 0) return;
-    const { username, name, artist, cita, descripcion } = req.body;
+    const { username, artist, cita, descripcion } = req.body;
     Cita.create({
       username,  
-      name,
       artist,
       cita,
       descripcion
@@ -29,10 +28,9 @@ router.post('/add', function (req, res, next) {
 
 router.put('/:id', function (req, res, next) {
   const { id } = req.params;
-  const { username, name, artist, cita, descripcion } = req.body;
+  const { username, artist, cita, descripcion } = req.body;
   Cita.findByIdAndUpdate(id, {
     username,
-    name,
     artist,
     cita,
     descripcion

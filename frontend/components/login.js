@@ -15,6 +15,7 @@ const Login = () => {
     const [telefono, setTelefono] = useState("");
     let userLog = '';
 
+
     useEffect(() => {
         recibeIsLog();
     }, []);
@@ -27,11 +28,17 @@ const Login = () => {
             case 'userRegistro':
                 setUsername(value);
                 break;
+            case 'userInicio':
+                setUsername(value)
+                break;
             case 'nameRegistro':
                 setFullname(value);
                 break;
             case 'passRegistro':
-                setFullname(value);
+                setPass(value);
+                break;
+            case 'passInicio':
+                setPass(value);
                 break;
             case 'emailRegistro':
                 setEmail(value);
@@ -54,7 +61,7 @@ const Login = () => {
             errors.userError = "";
         }
     
-        if (!fulName.trim()) {
+        if (!fullname.trim()) {
             errors.nameError = "INGRESE SU NOMBRE";
         } else {
             errors.nameError = "";
@@ -122,7 +129,7 @@ const Login = () => {
     };
     
     const iniciarSesion = () => {
-        const data = { username: document.getElementById('userInicio').value, password: document.getElementById('passInicio').value };
+        const data = { username: username, password: pass };
 
         fetch('http://localhost:5000/users/signin', { method: 'POST', cache: 'no-cache', headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
             .then(response => {
@@ -149,11 +156,11 @@ const Login = () => {
     const registrarse = () => {
         if (validateForm()) {
             const datosRegistro = {
-                username: document.getElementById('userRegistro').value,
-                fullname: document.getElementById('nameRegistro').value,
-                password: document.getElementById('passRegistro').value,
-                email: document.getElementById('emailRegistro').value,
-                telefono: document.getElementById('telRegistro').value
+                username: username,
+                fullname: fullname,
+                password: pass,
+                email: email,
+                telefono: telefono
             };
 
             fetch('http://localhost:5000/users/signup', {
@@ -206,47 +213,45 @@ const Login = () => {
         <div>
             <div className={style.contenedor}>
                 {!isLog &&
-                    <Popup trigger={<button className={style.popupButton}>LOGIN</button>} modal>
+                    <Popup className={style.popup} trigger={<button className={style.popupButton}>LOGIN</button>} modal>
                         {close => (
                             <div className={style.popupContent}>
-                                <button className={style.close} onClick={close}>
-                                    &times;
-                                </button>
                                 {!isRegistred &&
-                                    <>
-                                        <div className={style.header}> REGISTRARSE </div>
-                                        <div className={style.content}>
-                                            <span id='regSesionError'></span>
-                                            <span id="userError"></span><br />
-                                            <label className={style.input}>Usuario: *</label>
-                                            <input type="text" id="userRegistro" className={style.input} onChange={handleInputChange}/>
-                                            <span id="nameError"></span><br />
-                                            <label className={style.input}>Nombre: *</label>
-                                            <input type="text" id="nameRegistro" className={style.input} onChange={handleInputChange}/>
-                                            <span id="passError"></span><br />
-                                            <label className={style.input}>Contraseña: *</label>
-                                            <input type="password" id="passRegistro" className={style.input} onChange={handleInputChange}/>
-                                            <span id="emailError"></span><br />
-                                            <label className={style.input}>Email: *</label>
-                                            <input type="email" id="emailRegistro" className={style.input} onChange={handleInputChange}/><br />
-                                            <label className={style.input}>Teléfono</label>
-                                            <input type="tel" id="telRegistro" className={style.input} onChange={handleInputChange}/><br /><br />
-                                            <button type="button" className={style.button} onClick={registrarse}>Registrarse</button>
-                                            <button className={style.cambiaForm} onClick={changeReg}><b>{isRegistred ? "Registrarse" : "Iniciar sesión"}</b></button>
+                                    <div className={style.modal}>
+                                        <div className={style.modalContent}>
+                                            <span className={style.close} onClick={close}><b>x</b></span>
+                                            <div className={style.header}> REGISTRARSE </div>
+                                            <div className={style.content}>
+                                                <span id='regSesionError'></span>
+                                                <span id="userError"></span><br />
+                                                <input type="text" id="userRegistro" className={style.input} onChange={handleInputChange} placeholder="Usuario"/><br />
+                                                <span id="nameError"></span><br />
+                                                <input type="text" id="nameRegistro" className={style.input} onChange={handleInputChange} placeholder="Nombre"/><br />
+                                                <span id="passError"></span><br />
+                                                <input type="password" id="passRegistro" className={style.input} onChange={handleInputChange} placeholder="Contraseña"/><br />
+                                                <span id="emailError"></span><br />
+                                                <input type="email" id="emailRegistro" className={style.input} onChange={handleInputChange} placeholder="Email"/><br /><br />
+                                                <input type="tel" id="telRegistro" className={style.input} onChange={handleInputChange} placeholder="Teléfono"/><br /><br />
+                                                <button type="button" className={style.button} onClick={registrarse}>Registrarse</button>
+                                                <button className={style.cambiaForm} onClick={changeReg}><b>{isRegistred ? "Registrarse" : "Iniciar sesión"}</b></button>
+                                            </div>
                                         </div>
-                                    </>
+                                    </div>
                                 }
                                 {isRegistred &&
-                                    <>
-                                        <div className={style.header}> INICIAR SESIÓN </div>
-                                        <div className={style.content}>
-                                            <span id="iniSesionError"></span>
-                                            <input type="text" id="userInicio" className={style.input} placeholder="Usuario"/><br />
-                                            <input type="password" id="passInicio" className={style.input} placeholder="Contraseña"/><br />
-                                            <button type="button" className={style.button} onClick={iniciarSesion}>Iniciar sesión</button>
-                                            <button className={style.cambiaForm} onClick={changeReg}><b>{isRegistred ? "Registrarse" : "Iniciar sesión"}</b></button>
+                                    <div className={style.modal}>
+                                        <div className={style.modalContent}>
+                                            <span className={style.close} onClick={close}><b>x</b></span>
+                                            <div className={style.header}> INICIAR SESIÓN </div>
+                                            <div className={style.content}>
+                                                <span id="iniSesionError"></span><br />
+                                                <input type="text" id="userInicio" className={style.input} onChange={handleInputChange} placeholder="Usuario"/><br />
+                                                <input type="password" id="passInicio" className={style.input} onChange={handleInputChange} placeholder="Contraseña"/><br />
+                                                <button type="button" className={style.button} onClick={iniciarSesion}>Iniciar sesión</button>
+                                                <button className={style.cambiaForm} onClick={changeReg}><b>{isRegistred ? "Registrarse" : "Iniciar sesión"}</b></button>
+                                            </div>
                                         </div>
-                                    </>
+                                    </div>
                                 }
                                 
                             </div>
