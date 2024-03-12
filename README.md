@@ -8,6 +8,6 @@
 <p>Para poner en funcionamiento el backEnd, tendremos que añadir un archivo ".env", en el cual añadiremos el siguiente código: 
     "NODE_ENV = development
     PORT = 5000
-    DB_URI = 'mongodb+srv://alee:"password">@cluster0.jdr0o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'"
+    DB_URI = 'mongodb+srv://alee:"password"@cluster0.jdr0o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'"
   
 Después, abriremos una ventana de comandos distinta a la anerior y pondremos "npm i", lo cual instalará todas las dependecias para hacer funcionar el código, y por último introducimos "npm start" para ponerlo en funcionamiento</>
