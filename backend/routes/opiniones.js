@@ -30,8 +30,9 @@ router.post('/add', function (req, res, next) {
 
 router.put('/:id', function (req, res, next) {
   const { id } = req.params;
-  const { titulo, opinion } = req.body;
+  const { imgUser, titulo, opinion } = req.body;
   Opinion.findByIdAndUpdate(id, {
+    imgUser,
     titulo,
     opinion
   }, (err, opinion) => {

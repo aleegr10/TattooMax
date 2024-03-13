@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Popup from 'reactjs-popup';
 import Nav from '../components/nav';
 import Footer from '../components/footer';
+import ChangeImg from '../components/changeImg'
 import EditaDatos from '../components/editaDatos';
 import EditaPass from '../components/editaPass';
-import Image from 'next/image';
 import style from '../styles/Perfil.module.css';
 
 export default function Perfil() {
@@ -15,6 +14,7 @@ export default function Perfil() {
   const [citas, setCitas] = useState([]);
   const [opiniones, setOpiniones] = useState([]);
   // const [artists, setArtists] = useState([]);
+  const [isChangeImgOpen, setIsChangeImgOpen] = useState(false);
   const [isEditaDatosOpen, setIsEditaDatosOpen] = useState(false);
   const [isEditaPassOpen, setIsEditaPassOpen] = useState(false);
 
@@ -31,9 +31,6 @@ export default function Perfil() {
       router.push('/pagError');
     }
   }, []);
-
-  useEffect(()=>{
-  }, [])
 
   const recibeId = () => {
     const userId = sessionStorage.getItem('token');
@@ -77,11 +74,9 @@ export default function Perfil() {
     }
   };
 
-  // const fetchArtists = async () => {
-  //   const response = await fetch(`http://localhost:5000/artists`);
-  //   const data = await response.json();
-  //   setArtists(data);
-  // };
+  const openChangeImg = () => {
+    setIsChangeImgOpen(true);
+  };
 
   const openEditaDatos = () => {
     setIsEditaDatosOpen(true);
@@ -89,6 +84,10 @@ export default function Perfil() {
 
   const openEditaPass = () => {
     setIsEditaPassOpen(true);
+  };
+
+  const closeChangeImg = () => {
+    setIsChangeImgOpen(false);
   };
 
   const closeEditaDatos = () => {
@@ -111,7 +110,8 @@ export default function Perfil() {
       <div className={style.datosUser}>
         <div className={style.user}>
           <div className={style.img}>
-            <img src={user.imagen} alt='userImage' width="150px" />
+            <img src={user.imagen} alt='userImage' className={style.buttonImg} onClick={openChangeImg} width="150px" height="150px"/>
+            {isChangeImgOpen && <ChangeImg user={user} onClose={closeChangeImg} />}
           </div>
           <div className={style.datos}>
             <p>User: <b>{user.username}</b></p>
@@ -142,7 +142,7 @@ export default function Perfil() {
             opiniones.map((opinion, index) => (
               <div key={index} className={style.opinion}>
                 <div className={style.divOp}>
-                  <img className={style.imgArtistOp} src={opinion.imgArtist} width="30px" />
+                  <img src={opinion.imgArtist} className={style.imgArtistOp} width="30px" />
                   <b className={style.ArtistOp}>{opinion.artist}</b>
                 </div>
                 <div className={style.divOp}><b className={style.TituloOp}>{opinion.titulo}</b></div>

@@ -13,12 +13,46 @@ const Artista = ({ name }) => {
 
     useEffect(() => {
         recibeUserLog();
+        fetchOpiniones();
         fetchArtist();
         fetchHorario();
-        fetchOpiniones();
     }, []);
 
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+
+    const fetchHorario = async () => {
+        const data = await fetch(`${URL_BASE}/horarios`)
+            .then(res => res.json());
+        setHorario(data.find(horario => horario.artist === name));
+    };
+
+    const fetchOpiniones = async () => {
+        try {
+            const userId = sessionStorage.getItem('token');
+            const userResponse = await fetch(`http://localhost:5000/users`);
+            const userData = await userResponse.json();
+            const user = userData.find(usuario => usuario._id === userId);
+            const opinionesResponse = await fetch(`http://localhost:5000/opiniones`);
+            const opinionesData = await opinionesResponse.json();
+            const filteredOpiniones = opinionesData.filter(opinion => opinion.user === user.username);
+            setOpiniones(filteredOpiniones);
+          } catch (error) {
+            console.error("Error fetching opiniones:", error);
+          }
+    };
+
+    const fetchArtist = async () => {
+        const data = await fetch(`${URL_BASE}/artists`)
+            .then(res => res.json());
+        setArtista(data.find(artist => artist.name === name));
+    };
+
+    const recibeUserLog = async () => {
+        const userId = sessionStorage.getItem('token');
+        const data = await fetch(`${URL_BASE}/users`)
+            .then(res => res.json());
+        setUserLog(data.find(user => user._id === userId));
+    };
 
     const openCom = () => {
         recibeUserLog()
@@ -35,32 +69,6 @@ const Artista = ({ name }) => {
     }
     
     const closeCom = () => setIsComOpen(false);
-
-    const fetchHorario = async () => {
-        const data = await fetch(`${URL_BASE}/horarios`)
-            .then(res => res.json());
-        setHorario(data.find(horario => horario.artist === name));
-    };
-
-    const fetchOpiniones = async () => {
-        const data = await fetch(`${URL_BASE}/opiniones`)
-            .then(res => res.json());
-        const artistOpiniones = data.filter(opinion => opinion.artist === artista.name);
-        setOpiniones(artistOpiniones);
-    };
-
-    const fetchArtist = async () => {
-        const data = await fetch(`${URL_BASE}/artists`)
-            .then(res => res.json());
-        setArtista(data.find(artist => artist.name === name));
-    };
-
-    const recibeUserLog = async () => {
-        const userId = sessionStorage.getItem('token');
-        const data = await fetch(`${URL_BASE}/users`)
-            .then(res => res.json());
-        setUserLog(data.find(user => user._id === userId));
-    };
 
     return (
         <div className={style.container}>
@@ -105,7 +113,7 @@ const Artista = ({ name }) => {
                         opiniones.map((opinion, index) => (
                         <div key={index} className={style.opinion}>
                             <div className={style.divOp}>
-                                <img className={style.imgUserOp} src={opinion.imgUser} width="30px" />
+                                <img src={opinion.imgUser} className={style.imgUserOp} width="20px" height="20px"/>
                                 <b className={style.UserOp}>{opinion.user}</b>
                             </div>
                             <div className={style.divOp}><b className={style.TituloOp}>{opinion.titulo}</b></div>

@@ -20,6 +20,32 @@ const Login = () => {
         recibeIsLog();
     }, []);
 
+    const recibeIsLog = () => {
+        const idUser = sessionStorage.getItem('token');
+
+        if (idUser != null) {
+            recibeUserLog(idUser);
+            setIsLog(true);
+        } else {
+            setIsLog(false);
+        }
+    };
+
+    async function recibeUserLog(idUser) {
+        const datos = await fetch('http://localhost:5000/users').then(res => res.json()).then(data => { userLog = data.find(user => user._id === idUser) });
+        if (userLog.username === 'admin') {
+            setIsAdmin(true);
+        } else {
+            setIsAdmin(false);
+        }
+    }
+
+    const removeToken = () => {
+        sessionStorage.removeItem('token');
+        localStorage.removeItem('userRole');
+        recibeIsLog();
+    };
+
     const handleInputChange = (event) => {
         console.log(event.currentTarget)
         const { id, value } = event.currentTarget;
@@ -100,32 +126,6 @@ const Login = () => {
     const changeReg = () => {
         setIsRegistred(!isRegistred);
         return isRegistred;
-    };
-
-    const recibeIsLog = () => {
-        const idUser = sessionStorage.getItem('token');
-
-        if (idUser != null) {
-            recibeUserLog(idUser);
-            setIsLog(true);
-        } else {
-            setIsLog(false);
-        }
-    };
-
-    async function recibeUserLog(idUser) {
-        const datos = await fetch('http://localhost:5000/users').then(res => res.json()).then(data => { userLog = data.find(user => user._id === idUser) });
-        if (userLog.username === 'admin') {
-            setIsAdmin(true);
-        } else {
-            setIsAdmin(false);
-        }
-    }
-
-    const removeToken = () => {
-        sessionStorage.removeItem('token');
-        localStorage.removeItem('userRole');
-        recibeIsLog();
     };
     
     const iniciarSesion = () => {

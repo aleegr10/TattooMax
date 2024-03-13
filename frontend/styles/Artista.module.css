@@ -6,6 +6,10 @@
     border-radius: 50px;
 }
 
+.h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .tabla {
     width: 60%;
     margin: auto;
@@ -14,8 +18,51 @@
     border-spacing: 0px;
 }
 
-.h2 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+.dias {
+    background-color: rgb(161, 161, 161);
+    border: 1px solid black;
+}
+
+.horas {
+    border: 1px solid black;
+}
+
+.containerOp {
+    margin: 20px;
+    text-align: center;
+}
+
+.opiniones {
+    border: 1px solid black;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.opinion{
+    border-bottom: 1px solid rgb(32, 32, 32);
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.imgUserOp{
+    border-radius: 100%;
+}
+
+.divOp {
+    align-items: center;
+}
+
+.userOp {
+    font-size: 25px;
+}
+
+.tituloOp {
+    font-size: 20px;
+}
+
+.opinionOp {
+    font-size: 15px;
+    color: #333;
 }
 
 .modal{
@@ -54,6 +101,7 @@
     cursor: pointer;
     border-radius: 5px;
     margin-top: 10px;
+    margin-bottom: 5px
 }
 
 .button:hover{
@@ -100,23 +148,6 @@
     border-radius: 10px;
 }
 
-.dias {
-    background-color: rgb(161, 161, 161);
-    border: 1px solid black;
-}
-
-.horas {
-    border: 1px solid black;
-}
-
-.button {
-    margin-bottom: 20px;
-}
-
-.button:hover {
-    cursor: pointer;
-}
-
 .error {
     text-align: center;
     color: red;
@@ -131,38 +162,4 @@
     display: block;
     top: 5rem;
     margin: auto;
-}
-
-.containerOp {
-    margin: 20px;
-    text-align: center;
-}
-
-.opiniones {
-    border: 1px solid black;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-.opinion{
-    border-bottom: 1px solid rgb(32, 32, 32);
-    padding: 5px;
-    margin-bottom: 10px;
-}
-
-.divOp {
-    align-items: center;
-}
-
-.userOp {
-    font-size: 25px;
-}
-
-.tituloOp {
-    font-size: 20px;
-}
-
-.opinionOp {
-    font-size: 15px;
-    color: #333;
 }

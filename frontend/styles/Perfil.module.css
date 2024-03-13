@@ -9,6 +9,15 @@
 
 .img {
     margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.buttonImg{
+    background-color: transparent;
+    border: none;
+    border-radius: 100%;
+    padding: 0;
+    cursor: pointer;
 }
 
 .datos {
@@ -27,6 +36,44 @@
 
 .openModal:hover {
     background-color: rgb(43, 43, 43);
+}
+
+.containerOp, .containerCitas {
+    margin: 20px;
+    text-align: center;
+}
+
+.opiniones, .citas{
+    border: 1px solid black;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.opinion, .cita{
+    border-bottom: 1px solid rgb(32, 32, 32);
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.divOp{
+    align-items: center;
+}
+
+.ArtistOp {
+    font-size: 25px;
+}
+
+.tituloOp {
+    font-size: 20px;
+}
+
+.opinionOp {
+    font-size: 15px;
+    color: #333;
+}
+
+.imgArtistOp{
+    border-radius: 100%;
 }
 
 .modal{
@@ -94,44 +141,6 @@
     color: white;
     padding: 20px;
     border-radius: 10px;
-}
-
-.containerOp, .containerCitas {
-    margin: 20px;
-    text-align: center;
-}
-
-.opiniones, .citas{
-    border: 1px solid black;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-.opinion, .cita{
-    border-bottom: 1px solid rgb(32, 32, 32);
-    padding: 5px;
-    margin-bottom: 10px;
-}
-
-.divOp{
-    align-items: center;
-}
-
-.ArtistOp {
-    font-size: 25px;
-}
-
-.tituloOp {
-    font-size: 20px;
-}
-
-.opinionOp {
-    font-size: 15px;
-    color: #333;
-}
-
-.imgArtistOp{
-    border-radius: 100%;
 }
 
 

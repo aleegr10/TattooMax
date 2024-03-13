@@ -19,6 +19,11 @@ var citasRouter = require('./routes/citas');
 var db = require("./database");
 var app = express();
 
+app.use(cors());
+
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

@@ -7,9 +7,12 @@ export default function PagError() {
       <div>
         <Nav />
       </div>
-      <div>
-        hola
-      </div>
+      <h1>
+        HA HABIDO UN ERROR AL INTENTAR ACCEDER A LA PÁGINA
+      </h1>
+      <h2>
+        Vuelva a la página <a href="/" style={{color: 'blue'}}>inicial</a> o a otra página distinta
+      </h2><br/><br/><br/><br/><br/><br/><br/><br/>
       <div>
         <Footer/>
       </div>
