@@ -26,21 +26,21 @@ const Footer = () => {
             <div className={style.div}>
                 <h1 className={style.h1}>APARTADOS WEB</h1>
                 <div>
-                    <Link href='/'>Inicio</Link>
+                    <Link href="/">Inicio</Link>
                 </div><br />
                 <div>
-                    <Link href='/local'>Local</Link>
+                    <Link href="/local">Local</Link>
                 </div><br />
                 <div>
-                    <Link href='/artistas'>Artistas</Link>
+                    <Link href="/artistas">Artistas</Link>
                 </div><br />
                 <div>
-                    <Link href='/blog'>Información</Link>
+                    <Link href="/blog">Información</Link>
                 </div><br />
             </div>
 
             <div className={style.div}>
-                <Link href='https://untap.org'><Image src={UNTAP} className={style.UNTAP} alt="UNTAP" width="220%" height="100%" /></Link>
+                <Link href="https://untap.org"><Image src={UNTAP} className={style.UNTAP} alt="UNTAP" width="220%" height="100%" /></Link>
             </div>
         </div>
     )

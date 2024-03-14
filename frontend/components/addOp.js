@@ -2,11 +2,11 @@ import style from '../styles/Artista.module.css';
 import { useState } from 'react';
 
 const AddOp = ({ user, artist, onClose }) => {
-    const [titulo, setTitulo] = useState("");
-    const [opinion, setOpinion] = useState("");
+    const [titulo, setTitulo] = useState('');
+    const [opinion, setOpinion] = useState('');
 
     const removeAccents = (str) => {
-        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     } 
 
     const handleInputChange = (event) => {
@@ -28,25 +28,25 @@ const AddOp = ({ user, artist, onClose }) => {
         var errors = {};
     
         if (!titulo.trim()) {
-            errors.tituloError = "INGRESE UN TÍTULO";
+            errors.tituloError = 'INGRESE UN TÍTULO';
         } else {
-            errors.tituloError = "";
+            errors.tituloError = '';
         }
     
         if (!opinion.trim()) {
-            errors.opinionError = "INGRESE UNA OPINIÓN";
+            errors.opinionError = 'INGRESE UNA OPINIÓN';
         } else {
-            errors.opinionError = "";
+            errors.opinionError = '';
         }
     
         for (var errorId in errors) {
             if (errors.hasOwnProperty(errorId)) {
                 document.getElementById(errorId).innerHTML = errors[errorId];
-                document.getElementById(errorId).style = "font-size: 10px; color: red";
+                document.getElementById(errorId).style = 'font-size: 10px; color: red';
             }
         }
     
-        var isValid = Object.keys(errors).every(key => errors[key] === "");
+        var isValid = Object.keys(errors).every(key => errors[key] === '');
         return isValid;
     }
 
@@ -63,23 +63,23 @@ const AddOp = ({ user, artist, onClose }) => {
                     throw new Error('ERROR AL AÑADIR OPINIÓN');
                 }
 
-                var modalOpOk = document.getElementById("modalOpOk");
+                var modalOpOk = document.getElementById('modalOpOk');
 
-                modalOpOk.style.display = "block";
+                modalOpOk.style.display = 'block';
 
                 let artista = artist.name.replace(/\s+/g, '');
                 artista = removeAccents(artista);
 
                 setTimeout(function () {
-                    var modalOpOk = document.getElementById("modalOpOk");
+                    var modalOpOk = document.getElementById('modalOpOk');
 
-                    modalOpOk.style.display = "none";
+                    modalOpOk.style.display = 'none';
                     onClose();
-                    window.location.href = "/artists/"+artista;
+                    window.location.href = '/artists/'+artista;
                 }, 2000);
             } catch (error) {
-                document.getElementById("addError").innerHTML = error.message;
-                document.getElementById("addError").style = "font-size: 15px; color: red";
+                document.getElementById('addError').innerHTML = error.message;
+                document.getElementById('addError').style = 'font-size: 15px; color: red';
             }
         };
     }
@@ -89,12 +89,12 @@ const AddOp = ({ user, artist, onClose }) => {
             <div className={style.modalContentOp}>
             <span className={style.close} onClick={onClose}><b>x</b></span>
             <div>
-                <span id='addError'></span>
+                <span id="addError"></span>
                 <h1 className={style.header}>Añadir comentario</h1>
                 <span id="tituloError"></span><br/>
-                <input id="titulo" onChange={handleInputChange} placeholder='Título'/><br/>
+                <input id="titulo" onChange={handleInputChange} placeholder="Título"/><br/>
                 <span id="opinionError"></span><br/>
-                <textarea id="opinion" onChange={handleInputChange} placeholder='Opinión'/><br/>
+                <textarea id="opinion" onChange={handleInputChange} placeholder="Opinión"/><br/>
                 <button className={style.button} onClick={submit}>Aceptar</button>
                 <button className={style.button} onClick={onClose}>Cancelar</button>
             </div>

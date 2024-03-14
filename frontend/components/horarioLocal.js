@@ -20,9 +20,9 @@ const HorarioLocal = () => {
                         {horario.map(hor => (
                             <>
                                 {hor.dias.map(dia => (
-                                    <th key={dia} style={{ border: '1px solid black' }}><b>{dia}</b></th>
+                                    <th key={dia} style={{ border: "1px solid black" }}><b>{dia}</b></th>
                                 ))}
-                                <th style={{ border: '1px solid black' }}>Domingo</th>
+                                <th style={{ border: "1px solid black" }}>Domingo</th>
                             </>
                         ))}
                     </tr>
@@ -33,9 +33,9 @@ const HorarioLocal = () => {
                             {hor.horas.map(hora => (
                                 <tr key={hora}>
                                     {hor.dias.map(() => (
-                                        <td key={hora} style={{ border: '1px solid black' }}>{hora}</td>
+                                        <td key={hora} style={{ border: "1px solid black" }}>{hora}</td>
                                     ))}
-                                    <td style={{ border: '1px solid black' }}>CERRADO</td>
+                                    <td style={{ border: "1px solid black" }}>CERRADO</td>
                                 </tr>
                             ))}
                         </>

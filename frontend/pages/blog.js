@@ -8,7 +8,6 @@ import imagenBrazo from '../public/blog/imagenBrazo.jpg';
 
 export default function Blog() {
   useEffect(() => {
-    document.title = 'Trucos para cuidar tu tattoo';
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import style from "../styles/Perfil.module.css"
+import style from '../styles/Perfil.module.css'
 import { useState } from 'react';
 
 const EditaDatos = ({user, onClose }) => {
@@ -33,39 +33,39 @@ const EditaDatos = ({user, onClose }) => {
     var errors = {};
   
     if(!username.trim()) {
-        errors.userError = "INGRESE UN NOMBRE DE USUARIO";
+        errors.userError = 'INGRESE UN NOMBRE DE USUARIO';
     }
     else{
-        errors.userError = "";
+        errors.userError = '';
     }
   
     if(!fullname.trim()) {
-        errors.nameError = "INGRESE SU NOMBRE";
+        errors.nameError = 'INGRESE SU NOMBRE';
     }
     else{
-        errors.nameError = "";
+        errors.nameError = '';
     }
   
     if(!email.trim()) {
-        errors.emailError = "INGRESE UN CORREO ELECTRÓNICO";
+        errors.emailError = 'INGRESE UN CORREO ELECTRÓNICO';
     } else{
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if(!emailRegex.test(email)) {
-            errors.emailError = "INGRESE UN CORREO ELECTRÓNICO VÁLIDO";
+            errors.emailError = 'INGRESE UN CORREO ELECTRÓNICO VÁLIDO';
         }
     else{
-            errors.emailError = "";
+            errors.emailError = '';
         }
     }
   
     for (var errorId in errors) {
         if(errors.hasOwnProperty(errorId)) {
             document.getElementById(errorId).innerHTML = errors[errorId];
-            document.getElementById(errorId).style = "font-size: 10px; color: red";
+            document.getElementById(errorId).style = 'font-size: 10px; color: red';
         }
     }
   
-    var isValid = Object.keys(errors).every(key => errors[key] === "");
+    var isValid = Object.keys(errors).every(key => errors[key] === '');
     if(isValid) {
         return true; 
     }
@@ -93,19 +93,19 @@ const EditaDatos = ({user, onClose }) => {
         user.email = email;
         user.telefono = telefono;
   
-        var modalEditaDatosOk = document.getElementById("modalEditaDatosOk");
+        var modalEditaDatosOk = document.getElementById('modalEditaDatosOk');
 
-        modalEditaDatosOk.style.display = "block";
+        modalEditaDatosOk.style.display = 'block';
 
         setTimeout(function(){
-          var modalEditaDatosOk = document.getElementById("modalEditaDatosOk");
+          var modalEditaDatosOk = document.getElementById('modalEditaDatosOk');
 
-          modalEditaDatosOk.style.display = "none";
+          modalEditaDatosOk.style.display = 'none';
           onClose();
         },2000);
       }catch(error) {
-        document.getElementById("actError").innerHTML = error.message;
-        document.getElementById("actError").style = "font-size: 15px; color: red";
+        document.getElementById('actError').innerHTML = error.message;
+        document.getElementById('actError').style = 'font-size: 15px; color: red';
       }
     }
   };
@@ -115,7 +115,7 @@ const EditaDatos = ({user, onClose }) => {
       <div className={style.modalContent}>
         <span className={style.close} onClick={onClose}><b>x</b></span>
         <div>
-          <span id='actError'></span>
+          <span id="actError"></span>
           <h1 className={style.header}>DATOS PERSONALES</h1>
           <span id="userError"></span><br/>
           <input id="user" value={username} onChange={handleInputChange} placeholder="Usuario" required/><br/>

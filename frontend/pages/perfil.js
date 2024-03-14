@@ -55,7 +55,7 @@ export default function Perfil() {
       const userCitas = data.filter((cita) => cita.user === user.username);
       setCitas(userCitas);
     } catch (error) {
-      console.error("Error fetching opiniones:", error);
+      console.error('Error fetching opiniones:', error);
     }
   };
 
@@ -70,7 +70,7 @@ export default function Perfil() {
       const filteredOpiniones = opinionesData.filter(opinion => opinion.user === user.username);
       setOpiniones(filteredOpiniones);
     } catch (error) {
-      console.error("Error fetching opiniones:", error);
+      console.error('Error fetching opiniones:', error);
     }
   };
 
@@ -110,7 +110,7 @@ export default function Perfil() {
       <div className={style.datosUser}>
         <div className={style.user}>
           <div className={style.img}>
-            <img src={user.imagen} alt='userImage' className={style.buttonImg} onClick={openChangeImg} width="150px" height="150px"/>
+            <img src={user.imagen} alt="userImage" className={style.buttonImg} onClick={openChangeImg} width="150px" height="150px"/>
             {isChangeImgOpen && <ChangeImg user={user} onClose={closeChangeImg} />}
           </div>
           <div className={style.datos}>
@@ -136,7 +136,7 @@ export default function Perfil() {
           {opiniones.length === 0 ? (
             <div>
               <h3>No has realizado ninguna opinión a nuestros artistas</h3>
-              <p>Si quieres añadir una opinión, elige un artista <a href='/artists' style={{color: 'blue'}}>aquí</a> y nos pondremos en contacto contigo</p>
+              <p>Si quieres añadir una opinión, elige un artista <a href="/artists" style={{color: "blue"}}>aquí</a> y nos pondremos en contacto contigo</p>
             </div>
           ) : (
             opiniones.map((opinion, index) => (
@@ -162,7 +162,7 @@ export default function Perfil() {
           {citas.length === 0 ? (
             <div>
               <h3>Aún no tienes ninguna cita con nosotros</h3>
-              <p>Si quieres concretar una cita, rellena el formulario <a href='/local' style={{color: 'blue'}}>aquí</a> y nos pondremos en contacto contigo</p>
+              <p>Si quieres concretar una cita, rellena el formulario <a href="/local" style={{color: "blue"}}>aquí</a> y nos pondremos en contacto contigo</p>
             </div>
             
           ) : (

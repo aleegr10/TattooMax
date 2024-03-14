@@ -1,10 +1,10 @@
-import style from "../styles/Perfil.module.css";
+import style from '../styles/Perfil.module.css';
 import { useState } from 'react';
 
 const EditaPass = ({ user, onClose }) => {
-    const [pass1, setPass1] = useState("");
-    const [pass2, setPass2] = useState("");
-    const [pass3, setPass3] = useState("");
+    const [pass1, setPass1] = useState('');
+    const [pass2, setPass2] = useState('');
+    const [pass3, setPass3] = useState('');
 
     const handleInputChange = (event) => {
         const { id, value } = event.currentTarget;
@@ -27,35 +27,35 @@ const EditaPass = ({ user, onClose }) => {
         let errors = {};
 
         if (!pass1.trim()) {
-            errors.pass1Error = "INGRESE UNA CONTRASEÑA";
+            errors.pass1Error = 'INGRESE UNA CONTRASEÑA';
         }else{
-            errors.pass1Error = "";
+            errors.pass1Error = '';
         }
 
         if (!pass2.trim()) {
-            errors.pass2Error = "INGRESE UNA CONTRASEÑA";
+            errors.pass2Error = 'INGRESE UNA CONTRASEÑA';
         } else if (pass2.trim().length < 4) {
-            errors.pass2Error = "LA CONTRASEÑA NO PUEDE TENER MENOS DE 4 CARACTERES";
+            errors.pass2Error = 'LA CONTRASEÑA NO PUEDE TENER MENOS DE 4 CARACTERES';
         }else{
-            errors.pass2Error = "";
+            errors.pass2Error = '';
         }
 
         if (!pass3.trim()) {
-            errors.pass3Error = "INGRESE UNA CONTRASEÑA";
+            errors.pass3Error = 'INGRESE UNA CONTRASEÑA';
         } else if (pass3.trim().length < 4) {
-            errors.pass3Error = "LA CONTRASEÑA NO PUEDE TENER MENOS DE 4 CARACTERES";
+            errors.pass3Error = 'LA CONTRASEÑA NO PUEDE TENER MENOS DE 4 CARACTERES';
         }else{
-            errors.pass3Error = "";
+            errors.pass3Error = '';
         }
 
         for (let errorId in errors) {
             if (errors.hasOwnProperty(errorId)) {
                 document.getElementById(errorId).innerHTML = errors[errorId];
-                document.getElementById(errorId).style = "font-size: 10px; color: red";
+                document.getElementById(errorId).style = 'font-size: 10px; color: red';
             }
         }
 
-        let isValid = Object.keys(errors).every(key => errors[key] === "");
+        let isValid = Object.keys(errors).every(key => errors[key] === '');
         return isValid;
     }
 
@@ -72,8 +72,8 @@ const EditaPass = ({ user, onClose }) => {
                     });
 
                     if (!response.ok) {
-                        document.getElementById("pass1Error").innerHTML = "CONTRASEÑA ACTUAL ERRÓNEA";
-                        document.getElementById("pass1Error").style = "font-size: 10px; color: red";
+                        document.getElementById('pass1Error').innerHTML = 'CONTRASEÑA ACTUAL ERRÓNEA';
+                        document.getElementById('pass1Error').style = 'font-size: 10px; color: red';
                         return;
                     }
 
@@ -86,26 +86,26 @@ const EditaPass = ({ user, onClose }) => {
                     });
 
                     if (!updateResponse.ok) {
-                        document.getElementById("actError").innerHTML = "ERROR AL ACTUALIZAR LA CONTRASEÑA";
-                        document.getElementById("actError").style = "font-size: 15px; color: red";
+                        document.getElementById('actError').innerHTML = 'ERROR AL ACTUALIZAR LA CONTRASEÑA';
+                        document.getElementById('actError').style = 'font-size: 15px; color: red';
                         return;
                     }
 
-                    var modalEditaPassOk = document.getElementById("modalEditaPassOk");
-                    modalEditaPassOk.style.display = "block";
+                    var modalEditaPassOk = document.getElementById('modalEditaPassOk');
+                    modalEditaPassOk.style.display = 'block';
 
                     setTimeout(function () {
-                        var modalEditaPassOk = document.getElementById("modalEditaPassOk");
-                        modalEditaPassOk.style.display = "none";
+                        var modalEditaPassOk = document.getElementById('modalEditaPassOk');
+                        modalEditaPassOk.style.display = 'none';
                         onClose();
                     }, 2000);
                 } catch (error) {
-                    document.getElementById("actError").innerHTML = "ERROR AL ACTUALIZAR LA CONTRASEÑA";
-                    document.getElementById("actError").style = "font-size: 15px; color: red";
+                    document.getElementById('actError').innerHTML = 'ERROR AL ACTUALIZAR LA CONTRASEÑA';
+                    document.getElementById('actError').style = 'font-size: 15px; color: red';
                 }
             } else {
-                document.getElementById("newError").innerHTML = "LAS CONTRASEÑAS NO COINCIDEN";
-                document.getElementById("newError").style = "font-size: 10px; color: red";
+                document.getElementById('newError').innerHTML = 'LAS CONTRASEÑAS NO COINCIDEN';
+                document.getElementById('newError').style = 'font-size: 10px; color: red';
             }
         }
     };
@@ -115,7 +115,7 @@ const EditaPass = ({ user, onClose }) => {
             <div className={style.modalContent}>
                 <span className={style.close} onClick={onClose}><b>x</b></span>
                 <div>
-                    <span id='actError'></span>
+                    <span id="actError"></span>
                     <h1 className={style.header}>CAMBIAR CONTRASEÑA</h1>
                     <span id="pass1Error"></span><br/>
                     <input id="pass1" type="password" onChange={handleInputChange} placeholder="Contraseña actual" required/><br/>

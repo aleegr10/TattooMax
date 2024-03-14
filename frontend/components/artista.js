@@ -18,7 +18,7 @@ const Artista = ({ name }) => {
         fetchHorario();
     }, []);
 
-    const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    const dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
     const fetchHorario = async () => {
         const data = await fetch(`${URL_BASE}/horarios`)
@@ -37,7 +37,7 @@ const Artista = ({ name }) => {
             const filteredOpiniones = opinionesData.filter(opinion => opinion.user === user.username);
             setOpiniones(filteredOpiniones);
           } catch (error) {
-            console.error("Error fetching opiniones:", error);
+            console.error('Error fetching opiniones:', error);
           }
     };
 
@@ -59,11 +59,11 @@ const Artista = ({ name }) => {
         if (userLog !== undefined) {
             setIsComOpen(true);
         } else {
-            var modal = document.getElementById("myModal");
-                modal.style.display = "block";
+            var modal = document.getElementById('myModal');
+                modal.style.display = 'block';
                 setTimeout(() => {
-                    var modal = document.getElementById("myModal");
-                    modal.style.display = "none";
+                    var modal = document.getElementById('myModal');
+                    modal.style.display = 'none';
                 }, 2000);
         }
     }

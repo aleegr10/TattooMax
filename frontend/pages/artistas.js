@@ -1,8 +1,7 @@
-import Nav from "../components/nav";
-import Footer from "../components/footer";
+import Nav from '../components/nav';
+import Footer from '../components/footer';
 import style from '../styles/Artistas.module.css';
 import { useState, useEffect } from 'react';
-import Image from "next/image";
 
 export default function Artists() {
   let [artists, setArtists] = useState([]);
@@ -11,7 +10,7 @@ export default function Artists() {
     }, [])
     
     const removeAccents = (str) => {
-        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     } 
     
 

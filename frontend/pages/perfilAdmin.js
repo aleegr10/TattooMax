@@ -57,16 +57,16 @@ export default function PerfilAdmin() {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
     });
-    var modalRemoveUserOk = document.getElementById("modalRemoveUserOk");
+    var modalRemoveUserOk = document.getElementById('modalRemoveUserOk');
 
-    modalRemoveUserOk.style.display = "block";
+    modalRemoveUserOk.style.display = 'block';
 
     setTimeout(function(){
-      var modalRemoveUserOk = document.getElementById("modalRemoveUserOk");
+      var modalRemoveUserOk = document.getElementById('modalRemoveUserOk');
 
-      modalRemoveUserOk.style.display = "none";
+      modalRemoveUserOk.style.display = 'none';
       onClose();
-      window.location.href = "/perfilAdmin";
+      window.location.href = '/perfilAdmin';
     },2000);
   }
 
@@ -82,7 +82,7 @@ export default function PerfilAdmin() {
       <div className={style.datosUser}>
         <div className={style.userAdmin}>
           <div className={style.img}>
-            <img src={user.imagen} alt='userImage' width="150px" />
+            <img src={user.imagen} alt="userImage" width="150px" />
           </div>
           <div className={style.datos}>
             <p>User: <b>{user.username}</b></p>
@@ -97,13 +97,13 @@ export default function PerfilAdmin() {
           {users.length === 0 ? (
             <div>
               <h3>Aún no tienes ninguna cita con nosotros</h3>
-              <p>Si quieres concretar una cita, rellena el formulario <a href='/local' style={{color: 'blue'}}>aquí</a> y nos pondremos en contacto contigo</p>
+              <p>Si quieres concretar una cita, rellena el formulario <a href="/local" style={{color: "blue"}}>aquí</a> y nos pondremos en contacto contigo</p>
             </div>
             
           ) : (
             users.map((user, index) => (
               <div key={index} className={style.user}>
-                <div className={style.divUsers}><img src={user.imagen} alt='userImage' className={style.imgUsers}/><b className={style.nameUsers}>{user.username}</b></div>
+                <div className={style.divUsers}><img src={user.imagen} alt="userImage" className={style.imgUsers}/><b className={style.nameUsers}>{user.username}</b></div>
                 <div className={style.divUsers}>{user.fullname}</div>
                 <div className={style.divUsers}>{user.email}</div>
                 <div className={style.divUsers}>{user.tel}</div>

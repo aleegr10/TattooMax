@@ -58,7 +58,7 @@ export default function Home() {
             {slideImages.map((slideImage, index)=> (
               <div key={index}>
                 <div>
-                  <Image src={slideImage.url} alt={slideImage.caption} width='700px' height="400px"/>
+                  <Image src={slideImage.url} alt={slideImage.caption} width="700px" height="400px"/>
                 </div>
               </div>
             ))} 

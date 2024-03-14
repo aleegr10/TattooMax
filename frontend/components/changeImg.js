@@ -1,4 +1,4 @@
-import style from "../styles/Perfil.module.css"
+import style from '../styles/Perfil.module.css'
 import { useState } from 'react';
 
 const ChangeImg = ({user, onClose }) => {
@@ -54,26 +54,26 @@ const ChangeImg = ({user, onClose }) => {
               }
             }));
     
-            var modalEditaImgOk = document.getElementById("modalEditaImgOk");
+            var modalEditaImgOk = document.getElementById('modalEditaImgOk');
 
-            modalEditaImgOk.style.display = "block";
+            modalEditaImgOk.style.display = 'block';
         
             setTimeout(function(){
-                var modalEditaImgOk = document.getElementById("modalEditaImgOk");
+                var modalEditaImgOk = document.getElementById('modalEditaImgOk');
         
-                modalEditaImgOk.style.display = "none";
+                modalEditaImgOk.style.display = 'none';
         
                 setImagen('');
                 onClose();
-                window.location.href = "/perfil";
+                window.location.href = '/perfil';
             },2000);
         } catch (error) {
-            document.getElementById("actError").innerHTML = error.message;
-            document.getElementById("actError").style = "font-size: 15px; color: red";
+            document.getElementById('actError').innerHTML = error.message;
+            document.getElementById('actError').style = 'font-size: 15px; color: red';
         }
       } else {
-        document.getElementById("actError").innerHTML = 'Debe seleccionar una imagen';
-        document.getElementById("actError").style = "font-size: 15px; color: red";
+        document.getElementById('actError').innerHTML = 'Debe seleccionar una imagen';
+        document.getElementById('actError').style = 'font-size: 15px; color: red';
       }
   };
 
@@ -82,10 +82,10 @@ const ChangeImg = ({user, onClose }) => {
       <div className={style.modalContent}>
         <span className={style.close} onClick={onClose}><b>x</b></span>
         <div>
-          <span id='actError'></span>
+          <span id="actError"></span>
           <h1 className={style.header}>CAMBIAR FOTO DE PERFIL</h1>
           <input type="file" accept="image/*" onChange={handleImageChange} /><br />
-          {imagen && <img src={imagen} alt="Preview" style={{ maxWidth: '100px' }} />}
+          {imagen && <img src={imagen} alt="Preview" style={{ maxWidth: "100px" }} />}
           <button className={style.button} onClick={submit}>Aceptar</button>
           <button className={style.button} onClick={onClose}>Cancelar</button>
         </div>

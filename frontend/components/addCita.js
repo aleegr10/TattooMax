@@ -2,13 +2,13 @@ import style from '../styles/PerfilAdmin.module.css';
 import { useState } from 'react';
 
 const AddOp = ({ onClose }) => {
-    const [username, setUsername] = useState("");
-    const [artist, setArtist] = useState("");
-    const [cita, setCita] = useState("");
-    const [descripcion, setDescripcion] = useState("");
+    const [username, setUsername] = useState('');
+    const [artist, setArtist] = useState('');
+    const [cita, setCita] = useState('');
+    const [descripcion, setDescripcion] = useState('');
 
     const removeAccents = (str) => {
-        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     } 
 
     const handleInputChange = (event) => {
@@ -36,37 +36,37 @@ const AddOp = ({ onClose }) => {
         var errors = {};
     
         if (!username.trim()) {
-            errors.userError = "INGRESE UN USUARIO";
+            errors.userError = 'INGRESE UN USUARIO';
         } else {
-            errors.tituloError = "";
+            errors.tituloError = '';
         }
     
         if (!artist.trim()) {
-            errors.artistError = "INGRESE UN ARTISTA";
+            errors.artistError = 'INGRESE UN ARTISTA';
         } else {
-            errors.artistError = "";
+            errors.artistError = '';
         }
         
         if (!cita.trim()) {
-            errors.citaError = "INGRESE UNA CITA";
+            errors.citaError = 'INGRESE UNA CITA';
         } else {
-            errors.citaError = "";
+            errors.citaError = '';
         }
         
         if (!descripcion.trim()) {
-            errors.descripcionError = "INGRESE UNA DESCRIPCION";
+            errors.descripcionError = 'INGRESE UNA DESCRIPCION';
         } else {
-            errors.descripcionError = "";
+            errors.descripcionError = '';
         }
     
         for (var errorId in errors) {
             if (errors.hasOwnProperty(errorId)) {
                 document.getElementById(errorId).innerHTML = errors[errorId];
-                document.getElementById(errorId).style = "font-size: 10px; color: red";
+                document.getElementById(errorId).style = 'font-size: 10px; color: red';
             }
         }
     
-        var isValid = Object.keys(errors).every(key => errors[key] === "");
+        var isValid = Object.keys(errors).every(key => errors[key] === '');
         return isValid;
     }
 
@@ -83,24 +83,24 @@ const AddOp = ({ onClose }) => {
                     throw new Error('ERROR AL AÑADIR CITA');
                 }
 
-                var modalCitaOk = document.getElementById("modalCitaOk");
+                var modalCitaOk = document.getElementById('modalCitaOk');
 
-                modalCitaOk.style.display = "block";
+                modalCitaOk.style.display = 'block';
 
                 let artista = artist.name.replace(/\s+/g, '');
                 artista = removeAccents(artista);
 
                 setTimeout(function () {
-                    var modalCitaOk = document.getElementById("modalCitaOk");
+                    var modalCitaOk = document.getElementById('modalCitaOk');
 
-                    modalCitaOk.style.display = "none";
+                    modalCitaOk.style.display = 'none';
                     onClose();
-                    window.location.href = "/artists/"+artista;
+                    window.location.href = '/artists/'+artista;
 
                 }, 2000);
             } catch (error) {
-                document.getElementById("addError").innerHTML = error.message;
-                document.getElementById("addError").style = "font-size: 15px; color: red";
+                document.getElementById('addError').innerHTML = error.message;
+                document.getElementById('addError').style = 'font-size: 15px; color: red';
             }
         };
     }
@@ -110,16 +110,16 @@ const AddOp = ({ onClose }) => {
             <div className={style.modalContent}>
             <span className={style.close} onClick={onClose}><b>x</b></span>
             <div>
-                <span id='addError'></span>
+                <span id="addError"></span>
                 <h1 className={style.header}>Añadir comentario</h1>
                 <span id="userError"></span><br/>
-                <input id="username" onChange={handleInputChange} placeholder='User'/><br/>
+                <input id="username" onChange={handleInputChange} placeholder="User"/><br/>
                 <span id="artistError"></span><br/>
-                <input id="artist" onChange={handleInputChange} placeholder='Artista'/><br/>
+                <input id="artist" onChange={handleInputChange} placeholder="Artista"/><br/>
                 <span id="citaError"></span><br/>
-                <input id="cita" onChange={handleInputChange} placeholder='Cita (Fecha y hora)'/><br/> 
+                <input id="cita" onChange={handleInputChange} placeholder="Cita (Fecha y hora)"/><br/> 
                 <span id="descripcionError"></span><br/>
-                <textarea id="descripcion" onChange={handleInputChange} placeholder='Descripción de la cita'/><br/>
+                <textarea id="descripcion" onChange={handleInputChange} placeholder="Descripción de la cita"/><br/>
                 <button className={style.button} onClick={submit}>Aceptar</button>
                 <button className={style.button} onClick={onClose}>Cancelar</button>
             </div>

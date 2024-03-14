@@ -8,11 +8,11 @@ const Login = () => {
     const [isRegistred, setIsRegistred] = useState(true);
     const [isLog, setIsLog] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
-    const [username, setUsername] = useState("");
-    const [fullname, setFullname] = useState("");
-    const [pass, setPass] = useState("");
-    const [email, setEmail] = useState("");
-    const [telefono, setTelefono] = useState("");
+    const [username, setUsername] = useState('');
+    const [fullname, setFullname] = useState('');
+    const [pass, setPass] = useState('');
+    const [email, setEmail] = useState('');
+    const [telefono, setTelefono] = useState('');
     let userLog = '';
 
 
@@ -82,44 +82,44 @@ const Login = () => {
         const errors = {};
     
         if (!username.trim()) {
-            errors.userError = "INGRESE UN NOMBRE DE USUARIO";
+            errors.userError = 'INGRESE UN NOMBRE DE USUARIO';
         } else {
-            errors.userError = "";
+            errors.userError = '';
         }
     
         if (!fullname.trim()) {
-            errors.nameError = "INGRESE SU NOMBRE";
+            errors.nameError = 'INGRESE SU NOMBRE';
         } else {
-            errors.nameError = "";
+            errors.nameError = '';
         }
     
         if (!pass.trim()) {
-            errors.passError = "INGRESE UNA CONTRASEÑA";
+            errors.passError = 'INGRESE UNA CONTRASEÑA';
         } else if (pass.trim().length < 4) {
-            errors.passError = "LA CONTRASEÑA NO PUEDE TENER MENOS DE 4 CARACTERES";
+            errors.passError = 'LA CONTRASEÑA NO PUEDE TENER MENOS DE 4 CARACTERES';
         } else {
-            errors.passError = "";
+            errors.passError = '';
         }
     
         if (!email.trim()) {
-            errors.emailError = "INGRESE UN CORREO ELECTRÓNICO";
+            errors.emailError = 'INGRESE UN CORREO ELECTRÓNICO';
         } else {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                errors.emailError = "INGRESE UN CORREO ELECTRÓNICO VÁLIDO";
+                errors.emailError = 'INGRESE UN CORREO ELECTRÓNICO VÁLIDO';
             } else {
-                errors.emailError = "";
+                errors.emailError = '';
             }
         }
     
         for (const errorId in errors) {
             if (errors.hasOwnProperty(errorId)) {
                 document.getElementById(errorId).innerHTML = errors[errorId];
-                document.getElementById(errorId).style = "font-size: 10px; color: red";
+                document.getElementById(errorId).style = 'font-size: 10px; color: red';
             }
         }
     
-        const isValid = Object.keys(errors).every(key => errors[key] === "");
+        const isValid = Object.keys(errors).every(key => errors[key] === '');
         return isValid;
     };
     
@@ -131,25 +131,25 @@ const Login = () => {
     const iniciarSesion = () => {
         const data = { username: username, password: pass };
 
-        fetch('http://localhost:5000/users/signin', { method: 'POST', cache: 'no-cache', headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+        fetch('http://localhost:5000/users/signin', { method: 'POST', cache: 'no-cache', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("USUARIO O CONTRASEÑA INCORRECTOS");
+                    throw new Error('USUARIO O CONTRASEÑA INCORRECTOS');
                 }
                 return response.json();
             })
             .then(data => {
-                sessionStorage.setItem("token", data._id);
-                if (data.username === "admin") {
-                    localStorage.setItem("userRole", "admin");
+                sessionStorage.setItem('token', data._id);
+                if (data.username === 'admin') {
+                    localStorage.setItem('userRole', 'admin');
                 } else {
-                    localStorage.setItem("userRole", "user");
+                    localStorage.setItem('userRole', 'user');
                 }
                 recibeIsLog();
-                window.location.href = "/";
+                window.location.href = '/';
             }).catch(error => {
-                document.getElementById("iniSesionError").innerHTML = error.message;
-                document.getElementById("iniSesionError").style = "font-size: 10px; color: red";
+                document.getElementById('iniSesionError').innerHTML = error.message;
+                document.getElementById('iniSesionError').style = 'font-size: 10px; color: red';
             });
     };
 
@@ -165,12 +165,12 @@ const Login = () => {
 
             fetch('http://localhost:5000/users/signup', {
                 method: 'POST',
-                headers: { "Content-Type": "application/json" },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(datosRegistro)
             })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error("USUARIO O EMAIL YA REGISTRADOS");
+                        throw new Error('USUARIO O EMAIL YA REGISTRADOS');
                     }
                     return response.json();
                 })
@@ -179,32 +179,32 @@ const Login = () => {
                         username: datosRegistro.username,
                         password: datosRegistro.password
                     };
-                    sessionStorage.setItem("token", data._id);
+                    sessionStorage.setItem('token', data._id);
                     return fetch('http://localhost:5000/users/signin', {
                         method: 'POST',
-                        headers: { "Content-Type": "application/json" },
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(datosInicio)
                     });
                 })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error("Error al iniciar sesión");
+                        throw new Error('Error al iniciar sesión');
                     }
                     return response.json();
                 })
                 .then(data => {
-                    sessionStorage.setItem("token", data._id);
-                    if (data.username === "admin") {
-                        localStorage.setItem("userRole", "admin");
+                    sessionStorage.setItem('token', data._id);
+                    if (data.username === 'admin') {
+                        localStorage.setItem('userRole', 'admin');
                     } else {
-                        localStorage.setItem("userRole", "user");
+                        localStorage.setItem('userRole', 'user');
                     }
                     recibeIsLog();
-                    window.location.href = "/";
+                    window.location.href = '/';
                 })
                 .catch(error => {
-                    document.getElementById("regSesionError").innerHTML = error.message;
-                    document.getElementById("regSesionError").style = "font-size: 10px; color: red";
+                    document.getElementById('regSesionError').innerHTML = error.message;
+                    document.getElementById('regSesionError').style = 'font-size: 10px; color: red';
                 });
         }
     };
@@ -222,7 +222,7 @@ const Login = () => {
                                             <span className={style.close} onClick={close}><b>x</b></span>
                                             <div className={style.header}> REGISTRARSE </div>
                                             <div className={style.content}>
-                                                <span id='regSesionError'></span>
+                                                <span id="regSesionError"></span>
                                                 <span id="userError"></span><br />
                                                 <input type="text" id="userRegistro" className={style.input} onChange={handleInputChange} placeholder="Usuario"/><br />
                                                 <span id="nameError"></span><br />
@@ -233,7 +233,7 @@ const Login = () => {
                                                 <input type="email" id="emailRegistro" className={style.input} onChange={handleInputChange} placeholder="Email"/><br /><br />
                                                 <input type="tel" id="telRegistro" className={style.input} onChange={handleInputChange} placeholder="Teléfono"/><br /><br />
                                                 <button type="button" className={style.button} onClick={registrarse}>Registrarse</button>
-                                                <button className={style.cambiaForm} onClick={changeReg}><b>{isRegistred ? "Registrarse" : "Iniciar sesión"}</b></button>
+                                                <button className={style.cambiaForm} onClick={changeReg}><b>{isRegistred ? 'Registrarse' : 'Iniciar sesión'}</b></button>
                                             </div>
                                         </div>
                                     </div>

@@ -93,7 +93,7 @@ export default function Local() {
                         <h1 className={style.h1}>Localización</h1>
                         <div>
                             <div>
-                                <iframe className={style.mapa} id="gmap_canvas" src="https://maps.google.com/maps?q=Avenida%20Amsterdam,%20C.%20Estocolmo,%2011405%20Jerez%20de%20la%20Frontera,%20C%C3%A1diz&t=&z=13&ie=UTF8&iwloc=&output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
+                                <iframe className={style.mapa} id="gmap_canvas" src="https://maps.google.com/maps?q=Avenida%20Amsterdam,%20C.%20Estocolmo,%2011405%20Jerez%20de%20la%20Frontera,%20C%C3%A1diz&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
                                 <a href="https://www.whatismyip-address.com"></a><br/>
                             </div>
                         </div>
@@ -106,13 +106,13 @@ export default function Local() {
                             <div> 
                                 <div className={style.form}>
                                     
-                                    <input type="text" id="nombre" name="nombre" className={style.input} placeholder='Nombre'/><br/><br/>
+                                    <input type="text" id="nombre" name="nombre" className={style.input} placeholder="Nombre"/><br/><br/>
                                     
-                                    <input type="number" id="tel" name="tel" className={style.input} placeholder='Teléfono'/><br/><br/>
+                                    <input type="number" id="tel" name="tel" className={style.input} placeholder="Teléfono"/><br/><br/>
                                     
-                                    <input type="email" id="email" name="email" className={style.input} placeholder='Email'/><br/><br/>
+                                    <input type="email" id="email" name="email" className={style.input} placeholder="Email"/><br/><br/>
                                     
-                                    <textarea id="consulta" name="consulta" rows="3" className={style.textarea} placeholder='Escribe aquí tu consulta'/><br/><br/>
+                                    <textarea id="consulta" name="consulta" rows="3" className={style.textarea} placeholder="Escribe aquí tu consulta"/><br/><br/>
                                     <button type="button" className={style.button} onClick={comprobarLog}>Enviar</button>
                                 </div>
                             </div>
