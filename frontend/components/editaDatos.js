@@ -1,4 +1,4 @@
-import style from '../styles/Perfil.module.css'
+import style from '/styles/Perfil.module.css'
 import { useState } from 'react';
 
 const EditaDatos = ({user, onClose }) => {
@@ -76,7 +76,7 @@ const EditaDatos = ({user, onClose }) => {
   async function submit(){
     if(validateForm()){
       try {
-        const response = await fetch('http://localhost:5000/users/'+user._id, {
+        const response = await fetch('https://tattoomaxbackend.onrender.com/users/'+user._id, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

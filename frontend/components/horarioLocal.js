@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import style from '../styles/Local.module.css';
+import style from '/styles/Local.module.css';
 
 const HorarioLocal = () => {
     const [horario, setHorario] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/horarioLocal')
+        fetch('https://tattoomaxbackend.onrender.com/horarioLocal')
             .then(res => res.json())
             .then(data => {
                 setHorario(data);
             });
-    }, []);
+    });
 
     return (
         <div>

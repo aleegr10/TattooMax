@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Login from './login';
-import style from '../styles/Nav.module.css';
-import logo from '../public/logo.png';
+import Login from '/components/login';
+import style from '/styles/Nav.module.css';
+import logo from '/public/logo.png';
 
 const Nav = () => {
     const [showMenu, setShowMenu] = useState(false);
@@ -12,7 +12,7 @@ const Nav = () => {
         <div className={`${style.container} ${showMenu ? style.shrink : ''}`}>
             <div>
                 <Link href="/">
-                    <Image className={style.image} src={logo} height="120%" width="200%" />
+                    <Image className={style.image} alt='logo' src={logo} height="120%" width="200%" />
                 </Link>
             </div>
             <div className={style.login}>

@@ -1,5 +1,6 @@
-import style from '../styles/Perfil.module.css'
 import { useState } from 'react';
+import Image from 'next/image';
+import style from '/styles/Perfil.module.css'
 
 const ChangeImg = ({user, onClose }) => {
   const [imagen, setImagen] = useState();
@@ -10,7 +11,6 @@ const ChangeImg = ({user, onClose }) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        console.log(reader.result)
         setImagen(reader.result);
       };
     }
@@ -19,7 +19,7 @@ const ChangeImg = ({user, onClose }) => {
   async function submit(){
     if (imagen) {
         try {
-            const response = await fetch('http://localhost:5000/users/' + user._id, {
+            const response = await fetch('https://tattoomaxbackend.onrender.com/users/' + user._id, {
                 method: 'PUT',
                 headers: {
                 'Content-Type': 'application/json',
@@ -31,13 +31,13 @@ const ChangeImg = ({user, onClose }) => {
             throw new Error('ERROR AL ACTUALIZAR LA IMAGEN');
             }
             
-            const opinionesResponse = await fetch(`http://localhost:5000/opiniones`);
+            const opinionesResponse = await fetch(`https://tattoomaxbackend.onrender.com/opiniones`);
             const opinionesData = await opinionesResponse.json();
             const filteredOpiniones = opinionesData.filter(opinion => opinion.user === user.username);
 
             await Promise.all(filteredOpiniones.map(async (opinionUser) => {
               try {
-                const responseOp = await fetch('http://localhost:5000/opiniones/' + opinionUser._id, {
+                const responseOp = await fetch('https://tattoomaxbackend.onrender.com/opiniones/' + opinionUser._id, {
                   method: 'PUT',
                   headers: {
                     'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ const ChangeImg = ({user, onClose }) => {
           <span id="actError"></span>
           <h1 className={style.header}>CAMBIAR FOTO DE PERFIL</h1>
           <input type="file" accept="image/*" onChange={handleImageChange} /><br />
-          {imagen && <img src={imagen} alt="Preview" style={{ maxWidth: "100px" }} />}
+          {imagen && <Image src={imagen} alt="Preview" width="100px" height="100px" style={{ maxWidth: "100px" }} />}
           <button className={style.button} onClick={submit}>Aceptar</button>
           <button className={style.button} onClick={onClose}>Cancelar</button>
         </div>

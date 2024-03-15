@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import style from '../styles/Login.module.css';
+import style from '/styles/Login.module.css';
 
 const Login = () => {
     const [isRegistred, setIsRegistred] = useState(true);
@@ -18,7 +18,7 @@ const Login = () => {
 
     useEffect(() => {
         recibeIsLog();
-    }, []);
+    });
 
     const recibeIsLog = () => {
         const idUser = sessionStorage.getItem('token');
@@ -32,7 +32,7 @@ const Login = () => {
     };
 
     async function recibeUserLog(idUser) {
-        const datos = await fetch('http://localhost:5000/users').then(res => res.json()).then(data => { userLog = data.find(user => user._id === idUser) });
+        const datos = await fetch('https://tattoomaxbackend.onrender.com/users').then(res => res.json()).then(data => { userLog = data.find(user => user._id === idUser) });
         if (userLog.username === 'admin') {
             setIsAdmin(true);
         } else {
@@ -47,7 +47,6 @@ const Login = () => {
     };
 
     const handleInputChange = (event) => {
-        console.log(event.currentTarget)
         const { id, value } = event.currentTarget;
     
         switch (id) {
@@ -131,7 +130,7 @@ const Login = () => {
     const iniciarSesion = () => {
         const data = { username: username, password: pass };
 
-        fetch('http://localhost:5000/users/signin', { method: 'POST', cache: 'no-cache', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        fetch('https://tattoomaxbackend.onrender.com/users/signin', { method: 'POST', cache: 'no-cache', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('USUARIO O CONTRASEÑA INCORRECTOS');
@@ -163,7 +162,7 @@ const Login = () => {
                 telefono: telefono
             };
 
-            fetch('http://localhost:5000/users/signup', {
+            fetch('https://tattoomaxbackend.onrender.com/users/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(datosRegistro)
@@ -180,7 +179,7 @@ const Login = () => {
                         password: datosRegistro.password
                     };
                     sessionStorage.setItem('token', data._id);
-                    return fetch('http://localhost:5000/users/signin', {
+                    return fetch('https://tattoomaxbackend.onrender.com/users/signin', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(datosInicio)
