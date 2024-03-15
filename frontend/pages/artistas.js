@@ -10,8 +10,7 @@ export default function Artists() {
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
-      fetch('https://tattoomaxbackend.onrender.com/artists').then(res => res.json()).then(data => {setArtists(data)});
-      setIsLoading(false)
+      fetch('https://tattoomaxbackend.onrender.com/artists').then(res => res.json()).then(data => {setArtists(data); setIsLoading(false);});
   }, [])
   
   const removeAccents = (str) => {
@@ -28,8 +27,8 @@ export default function Artists() {
       {isLoading && 
         <>
           <div className={style.loadingContainer}>
-              <div className={style.loading}></div>
-              <p>Cargando...</p>
+            <div className={style.loading}></div>
+            <p>Cargando...</p>
           </div>
           <br/><br/><br/><br/><br/><br/><br/><br/><br/>
         </>
